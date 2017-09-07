@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delicious Menu</title>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="home">Home</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="menu">
+                            <span class="glyphicon glyphicon-book"></span>&nbsp;Menu
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="order">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Order meal
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="book">
+                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;Book a seat
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="about">
+                            <span class="glyphicon glyphicon-info-sign"></span>&nbsp;About Us
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="contact">
+                            <span class="glyphicon glyphicon-earphone"></span>&nbsp;Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 id="header">Delicious</h1>
+
+    <div id="image">
+        <div id="transbox">
+            <div id="data">
+                <p>
+                <h2>Dania główne:</h2>
+                {% for dish in dishes %}
+                {{ dish.dish_name }} {{ dish.price }}<br>
+                {% endfor %}
+
+                <h2>Drinki:</h2>
+                {% for drink in drinks %}
+                {{ drink.get_drink_type_display }} {{ drink.drink_name }} {{ drink.get_drink_volume_display }} {{ drink.price }}<br>
+                {% endfor %}
+
+                <h2>Wina:</h2>
+                {% for wine in wines %}
+                {{ wine.drink_name }} {{ wine.get_drink_volume_display }} {{ wine.price }}<br>
+                {% endfor %}
+
+                <h2>Soki:</h2>
+                {% for juice in juices %}
+                {{ juice.drink_name }} {{ juice.price }}<br>
+                {% endfor %}
+
+                <h2>Piwa:</h2>
+                {% for beer in beers %}
+                {{ beer.drink_name }} {{ beer.price }}<br>
+                {% endfor %}
+
+                </p>
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap/min.js"></script>-->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
