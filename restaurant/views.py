@@ -32,12 +32,26 @@ class AboutView(View):
     def get(self, request):
         return render(request, 'about.html')
 
+
 class ContactView(View):
     def get(self, request):
-        return render(request, 'contact.html')
+        form = ContactForm
+        return render(request, 'contact.html', {'form':form})
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            new = Contact.objects.create(subject = request.POST.get('subject'),
+                                         content = request.POST.get('content'),
+                                         contact_details=request.POST.get('contact_details'),
+                                         email=request.POST.get('email'),
+                                         phone_number = request.POST.get('phone_number')
+                                         )
+            return redirect('contact')
 
 class OrderView(View):
-    pass
+    def get(self, request):
+        form = OrderForm
+        return render(request, 'order.html', {'form':form})
 
 
 class DishView(View):
@@ -78,3 +92,17 @@ class DrinksView(View):
                                         )
         return redirect ('drinks')
 
+class BookSeatView(View):
+    def get(self, request):
+        form = BookSeatForm
+        return render(request, 'book_a_seat.html', {'form': form})
+    # def post(self, request):
+    #     form = DrinksForm(request.POST)
+    #     if form.is_valid():
+    #         new = Drinks.objects.create(drink_type = request.POST.get('drink_type'),
+    #                                     drink_volume = request.POST.get('drink_volume'),
+    #                                     wine_colors = request.POST.get('wine_colors'),
+    #                                     wine_sweetness = request.POST.get('wine_sweetness'),
+    #                                     drink_name = request.POST.get('drink_name'),
+    #                                     price=request.POST.get('price')
+    #                                     )

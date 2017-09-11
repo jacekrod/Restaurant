@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils.timezone import now
+from django.core.exceptions import ValidationError
+from django.core import validators
 
 # Create your models here.
 
@@ -72,3 +75,52 @@ class Drinks(models.Model):
     class Meta:
         verbose_name = 'napój'
         verbose_name_plural = 'napoje'
+
+class Contact(models.Model):
+    contact_details = models.CharField(max_length=99, null=True, verbose_name='Imię i nazwisko')
+    email = models.EmailField(validators=[validators.EmailValidator], blank=True)
+    phone_number = models.CharField(max_length=12, null=True, verbose_name='numer telefonu')
+    subject = models.CharField(max_length=99, verbose_name='temat')
+    content = models.TextField(verbose_name='treść')
+    date_added = models.DateTimeField(default=now, verbose_name='wysłane')
+
+    def __str__(self):
+        return '{} {}'.format(self.subject, self.content, self.date_added)
+
+    class Meta:
+        verbose_name = 'kontakt'
+        verbose_name_plural = 'kontakty'
+
+# class Order(models.Model):
+#     dish_name = models.CharField(max_length=99, verbose_name='danie')
+#     drink = models.CharField(max_length=99, verbose_name='napój')
+#     date_added = models.DateTimeField(default=now, verbose_name='wysłane')
+#
+#     def __str__(self):
+#         return '{} {}'.format(self.subject, self.content, self.date_added)
+#
+#     class Meta:
+#         verbose_name = 'zamówienie'
+#         verbose_name_plural = 'zamówienia'
+
+class BookSeat(models.Model):
+    date=models.DateTimeField(verbose_name='data rezerwacji')
+    time=models.TimeField(verbose_name='godzina rezerwacji')
+    guest_number=models.IntegerField(verbose_name='ilość gości')
+    name_surname=models.CharField(max_length=60, verbose_name='imię, nazwisko')
+    email=models.CharField(max_length=90, verbose_name='email')
+    phone=models.CharField(max_length=15, verbose_name='numer telefonu')
+    message=models.TextField(verbose_name="wiadomość")
+
+    def __str__(self):
+        return '{} {} {} {} {} {} {}'.format(self.date,
+                                           self.time,
+                                           self.guest_number,
+                                           self.name_surname,
+                                           self.email,
+                                           self.phone,
+                                           self.message
+                                             )
+    class Meta:
+        verbose_name = 'rezerwacja'
+        verbose_name_plural = 'rezerwacje'

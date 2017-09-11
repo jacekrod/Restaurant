@@ -19,4 +19,18 @@ class DrinksForm(ModelForm):
         model = Drinks
         fields = "__all__"
 
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = "__all__"
+        exclude = ['date_added']
 
+class OrderForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = "__all__"
+
+class BookSeatForm(ModelForm):
+    class Meta:
+        model = BookSeat
+        fields = "__all__"
