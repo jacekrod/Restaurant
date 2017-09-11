@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home$', HomeView.as_view(), name='home'),
     url(r'^about$', AboutView.as_view(), name='about'),
-    # url(r'^book$', Book.as_view, name='book'),
+    url(r'^book$', BookSeatView.as_view(), name='book'),
     url(r'^menu$', MenuView.as_view(), name='menu'),
     url(r'^order$', OrderView.as_view(), name='order'),
     url(r'^contact$', ContactView.as_view(), name='contact'),
