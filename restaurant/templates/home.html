@@ -29,12 +29,12 @@
                     </li>
                     <li class="">
                         <a href="order">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Order meal
+                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Order Meal
                         </a>
                     </li>
                     <li class="">
                         <a href="book">
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;Book a seat
+                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;Book a Seat
                         </a>
                     </li>
                 </ul>
@@ -57,7 +57,22 @@
     <h1>Delicious</h1>
     <div id="image"></div>
 
-    {% csrf_token %}
+    <footer>
+		<strong id="1">
+            <a href="home">Home</a></li>
+            &#8208;
+            <a href="menu">Menu</a></li>
+            &#8208;
+            <a href="order">Order Meal</a></li>
+            &#8208;
+            <a href="book">Book a Seat</a></li>
+            &#8208;
+            <a href="about">About Us</a></li>
+            &#8208;
+            <a href="contact">Contact</a></li><br>
+            {{ now }}
+		</strong>
+    </footer>
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
