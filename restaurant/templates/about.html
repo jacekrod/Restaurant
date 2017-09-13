@@ -30,12 +30,12 @@
                     </li>
                     <li class="">
                         <a href="order">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Order meal
+                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Order Meal
                         </a>
                     </li>
                     <li class="">
                         <a href="book">
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;Book a seat
+                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;Book a Seat
                         </a>
                     </li>
                 </ul>
@@ -58,7 +58,48 @@
     <h1>Delicious</h1>
     <div id="image"></div>
 
-    {% csrf_token %}
+    <div id="map" style="width:400px;height:400px;"></div>
+
+    <script>
+    function myMap() {
+      var mapCanvas = document.getElementById("map");
+      var mapOptions = {
+        center: new google.maps.LatLng(51.410153, 19.668649), zoom:15
+      };
+      var map = new google.maps.Map(mapCanvas, mapOptions);
+    }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyBEq0jX7yzk2k9eKR09Vy71gPAEMKQgbks&callback=myMap"></script>
+
+    <div class="contact_details">
+        <p>
+            <strong>
+            Restauracja "Delicious"<br>
+            ul. Długa 15<br>
+            00-200 Piotrków<br>
+            </strong>
+        </p>
+
+    </div>
+
+    <footer>
+		<strong>
+            <a href="home">Home</a></li>
+            &#8208;
+            <a href="menu">Menu</a></li>
+            &#8208;
+            <a href="order">Order Meal</a></li>
+            &#8208;
+            <a href="book">Book a Seat</a></li>
+            &#8208;
+            <a href="about">About Us</a></li>
+            &#8208;
+            <a href="contact">Contact</a></li><br>
+            {{ now }}
+		</strong>
+    </footer>
+
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
