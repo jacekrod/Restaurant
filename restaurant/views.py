@@ -27,6 +27,22 @@ class MenuView(View):
                                              'soft_drinks':soft_drinks
                                              })
 
+class OrderView(View):
+    def get(self, request):
+        dishes = Dish.objects.all()
+        wines = Drinks.objects.filter(drink_type=3)
+        beers = Drinks.objects.filter(drink_type=4)
+        juices = Drinks.objects.filter(drink_type=5)
+        soft_drinks = Drinks.objects.filter(drink_type=1)
+        drinks = Drinks.objects.filter(drink_type=2)
+        return render(request, 'order.html', {'dishes': dishes,
+                                             'drinks': drinks,
+                                             'wines': wines,
+                                             'beers': beers,
+                                             'juices': juices,
+                                             'soft_drinks': soft_drinks
+                                             })
+
 
 class AboutView(View):
     def get(self, request):
@@ -48,10 +64,7 @@ class ContactView(View):
                                          )
             return redirect('contact')
 
-class OrderView(View):
-    def get(self, request):
-        form = OrderForm
-        return render(request, 'order.html', {'form':form})
+
 
 
 class DishView(View):

@@ -60,8 +60,47 @@
 
     {% csrf_token %}
 
+
+    <div class="container">
+        <!--<table class="table table-condensed">-->
+            <h3>Dania główne:</h3>
+            <!--<tbody>-->
+                <!--<tr>-->
+                    {% for dish in dishes %}
+                    {{ dish.dish_name }} ................. {{ dish.price }}<br>
+                    {% endfor %}
+                <!--</tr>-->
+            <h3>Drinki:</h3>
+                <!--<tr>-->
+                    {% for drink in drinks %}
+                    {{ drink.drink_name }} ................. {{ drink.price }}<br>
+                    {% endfor %}
+                <!--</tr>-->
+            <h3>Wina:</h3>
+                <!--<tr>-->
+                {% for wine in wines %}
+                {{ wine.drink_name }} - {{ wine.get_drink_volume_display }} - ................. {{ wine.price }}<br>
+                {% endfor %}
+                <!--</tr>-->
+            <h3>Soki:</h3>
+                <!--<tr>-->
+                {% for juice in juices %}
+                {{ juice.drink_name }} ................. {{ juice.price }}<br>
+                {% endfor %}
+                <!--</tr>-->
+            <h3>Piwa:</h3>
+                <!--<tr>-->
+                {% for beer in beers %}
+                {{ beer.drink_name }} ................. {{ beer.price }}<br>
+                {% endfor %}
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    </div>
+
+
     <footer>
-		<strong id="1">
+		<strong>
             <a href="home">Home</a></li>
             &#8208;
             <a href="menu">Menu</a></li>
