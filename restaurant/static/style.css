@@ -9,7 +9,6 @@ body {
     width: 100%;
     height: 500px;
     background-repeat: repeat-x;
-
 }
 
 /* code to have the elements on top of the image. Image would be covered with a div with opacity*/
@@ -86,7 +85,13 @@ h2 {
     font: strong;
 }
 
+.container {
+    margin-bottom: 300px;
+}
 
 
+.contact_form {
+    margin-bottom: 100px;
+}
 
 
