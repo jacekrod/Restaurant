@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'Restaurant.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'Restaurant',
+        'NAME': 'Restaurant2',
         'USER': 'root',
         'PASSWORD': 'coderslab',
         'OPTIONS': {
