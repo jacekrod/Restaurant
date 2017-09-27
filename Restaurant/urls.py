@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^order$', OrderView.as_view(), name='order'),
     url(r'^contact$', ContactView.as_view(), name='contact'),
     url(r'^dish$', DishView.as_view(), name = 'dish'),
-    url(r'^ingridient$', IngridientView.as_view(), name = 'ingridient'),
+    url(r'^ingredient$', IngredientView.as_view(), name = 'ingredient'),
     url(r'^drinks$', DrinksView.as_view(), name='drinks'),
 
 ]
