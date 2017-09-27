@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
+<div>
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -58,68 +59,164 @@
     <h1>Delicious</h1>
     <div id="image"></div>
 
+    <form method="POST">
     {% csrf_token %}
-
-
     <div class="container">
-        <!--<table class="table table-condensed">-->
-            <h3>Dania główne:</h3>
-            <!--<tbody>-->
-                <!--<tr>-->
-                    {% for dish in dishes %}
-                    {{ dish.dish_name }} ................. {{ dish.price }}<br>
-                    {% endfor %}
-                <!--</tr>-->
-            <h3>Drinki:</h3>
-                <!--<tr>-->
-                    {% for drink in drinks %}
-                    {{ drink.drink_name }} ................. {{ drink.price }}<br>
-                    {% endfor %}
-                <!--</tr>-->
-            <h3>Wina:</h3>
-                <!--<tr>-->
-                {% for wine in wines %}
-                {{ wine.drink_name }} - {{ wine.get_drink_volume_display }} - ................. {{ wine.price }}<br>
-                {% endfor %}
-                <!--</tr>-->
-            <h3>Soki:</h3>
-                <!--<tr>-->
-                {% for juice in juices %}
-                {{ juice.drink_name }} ................. {{ juice.price }}<br>
-                {% endfor %}
-                <!--</tr>-->
-            <h3>Piwa:</h3>
-                <!--<tr>-->
-                {% for beer in beers %}
-                {{ beer.drink_name }} ................. {{ beer.price }}<br>
-                {% endfor %}
-                <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
-    </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">Dania główne</a>
+                </h1>
+                </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                      <div class="panel-body">
+                          {% for dish in dishes %}
+                          {{ dish.dish_name }} ................. {{ dish.price }}
+                          <div class="menu_choice">
+                              <input name=dish_{{dish.id}} type="checkbox" class="inline"/>
+                                <select class="menu_choice_count">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                          </div></br>
+                          {% endfor %}
+                      </div>
+                    </div>
+            </div>
+
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse2">Drinki</a>
+                </h1>
+                </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        {% for drink in drinks %}
+                        {{ drink.drink_name }} ................. {{ drink.price }}
+                        <div class="menu_choice">
+                              <input name=drink_{{drink.id}} type="checkbox" class="inline"/>
+                                <select class="menu_choice_count">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                          </div></br>
+                        {% endfor %}
+                      </div>
+                    </div>
+            </div>
+
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse3">Wina</a>
+                </h1>
+                </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        {% for wine in wines %}
+                        {{ wine.drink_name }} / {{ wine.get_drink_volume_display }} ................. {{ wine.price }}
+                          <div class="menu_choice">
+                              <input name=wine_{{wine.id}} type="checkbox" class="inline"/>
+                                <select class="menu_choice_count">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                          </div></br>
+                        {% endfor %}
+                      </div>
+                    </div>
+            </div>
+
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse4">Soki</a>
+                </h1>
+                </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        {% for juice in juices %}
+                        {{ juice.drink_name }} ................. {{ juice.price }}
+                          <div class="menu_choice">
+                              <input name=juice_{{juice.id}} type="checkbox" class="inline"/>
+                                <select class="menu_choice_count">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                          </div></br>
+                        {% endfor %}
+                      </div>
+                    </div>
+            </div>
+
+
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse5">Piwa</a>
+                    </h1>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse">
+                  <div class="panel-body">
+                   {% for beer in beers %}
+                   {{ beer.drink_name }} ................. {{ beer.price }}
+                      <div class="menu_choice">
+                              <input name=beer_{{beer.id}} type="checkbox" class="inline"/>
+                                <select class="menu_choice_count">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                          </div></br>
+                   {% endfor %}
+                  </div>
+                </div>
+            </div>
+        </div>
+
+
+            <input type="submit" value="Wyślij"/>
+    </form>
+</div>
+
 
 
     <footer>
 		<strong>
-            <a href="home">Home</a></li>
+            <a href="home">Home</a>
             &#8208;
-            <a href="menu">Menu</a></li>
+            <a href="menu">Menu</a>
             &#8208;
-            <a href="order">Order Meal</a></li>
+            <a href="order">Order Meal</a>
             &#8208;
-            <a href="book">Book a Seat</a></li>
+            <a href="book">Book a Seat</a>
             &#8208;
-            <a href="about">About Us</a></li>
+            <a href="about">About Us</a>
             &#8208;
-            <a href="contact">Contact</a></li><br>
+            <a href="contact">Contact</a><br>
             {{ now }}
 		</strong>
     </footer>
 
-<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap/min.js"></script>-->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap/min.js"></script>-->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
