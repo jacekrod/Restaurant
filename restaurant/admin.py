@@ -10,9 +10,9 @@ class DrinksAdmin(admin.ModelAdmin):
 class DishAdmin(admin.ModelAdmin):
     list_display = ['dish_name', 'price']
 
-@admin.register(Ingridient)
-class IngridientAdmin(admin.ModelAdmin):
-    list_display = ['ingridient_name', 'dish']
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    list_display = ['ingredient_name']
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
@@ -22,3 +22,8 @@ class ContactAdmin(admin.ModelAdmin):
 @admin.register(BookSeat)
 class BookSeatAdmin(admin.ModelAdmin):
     list_display = ['date', 'time', 'guest_number', 'name_surname', 'email', 'phone', 'message']
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['address', 'email', 'phone_number', 'self_pickup', 'date_added']
+
