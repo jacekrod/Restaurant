@@ -27,7 +27,29 @@ class MenuView(View):
                                              'soft_drinks':soft_drinks
                                              })
 
+# class OrderView(View):
+#     def get(self, request):
+#         # form = OrderForm
+#         dishes = Dish.objects.all()
+#         wines = Drinks.objects.filter(drink_type=3)
+#         beers = Drinks.objects.filter(drink_type=4)
+#         juices = Drinks.objects.filter(drink_type=5)
+#         soft_drinks = Drinks.objects.filter(drink_type=1)
+#         drinks = Drinks.objects.filter(drink_type=2)
+#         return render(request, 'order.html', {'dishes': dishes,
+#                                              'drinks': drinks,
+#                                              'wines': wines,
+#                                              'beers': beers,
+#                                              'juices': juices,
+#                                              'soft_drinks': soft_drinks
+#                                              })
 class OrderView(View):
+    def post(self, request):
+        print(request.POST.keys())
+        keys=' '.join(request.POST.keys())
+        for e in request.POST.keys():
+            print (e, request.POST.get(e))
+        return HttpResponse()
     def get(self, request):
         dishes = Dish.objects.all()
         wines = Drinks.objects.filter(drink_type=3)
@@ -35,6 +57,9 @@ class OrderView(View):
         juices = Drinks.objects.filter(drink_type=5)
         soft_drinks = Drinks.objects.filter(drink_type=1)
         drinks = Drinks.objects.filter(drink_type=2)
+        for e in dishes:
+            print (vars(e))
+        print(len(dishes), len(wines), len(beers), juices, soft_drinks , drinks)
         return render(request, 'order.html', {'dishes': dishes,
                                              'drinks': drinks,
                                              'wines': wines,
@@ -75,19 +100,20 @@ class DishView(View):
         form = DishForm(request.POST)
         if form.is_valid():
             new = Dish.objects.create(dish_name = request.POST.get('dish_name'),
-                                      price = request.POST.get('price'))
+                                      price = request.POST.get('price'),
+                                      ingredient = request.POST.get('ingredient'))
         return redirect ('dish')
 #
-class IngridientView(View):
+class IngredientView(View):
     def get(self, request):
-        form = IngridientForm
+        form = IngredientForm
         return render(request, 'form.html', {'form': form})
     def post(self, request):
-        form = IngridientForm(request.POST)
+        form = IngredientForm(request.POST)
         if form.is_valid():
-            new = Ingridient.objects.create(ingridient_name = request.POST.get('ingridient_name'))
+            new = Ingredient.objects.create(ingredient_name = request.POST.get('ingredient_name'))
             dish_id = new.dish_id
-        return redirect ('ingridient')
+        return redirect ('ingredient')
 
 class DrinksView(View):
     def get(self, request):
