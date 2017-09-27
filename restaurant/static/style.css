@@ -118,3 +118,7 @@ h2 {
 .menu_choice_count {
     height: 32px;
 }
+
+.button {
+    float: right;
+}

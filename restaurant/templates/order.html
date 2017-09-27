@@ -190,10 +190,16 @@
         </div>
 
 
-            <input type="submit" value="Wyślij"/>
     </form>
 </div>
 
+
+<div class="contact_form">
+            <form method="POST">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="wyślij">
+            </form>
+        </div>
 
 
     <footer>
