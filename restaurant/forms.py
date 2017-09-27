@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import *
+from django import forms
 
 
 class DishForm(ModelForm):
@@ -8,9 +9,10 @@ class DishForm(ModelForm):
         fields = "__all__"
 
 
-class IngridientForm(ModelForm):
+
+class IngredientForm(ModelForm):
     class Meta:
-        model = Ingridient
+        model = Ingredient
         fields = "__all__"
 
 
@@ -27,8 +29,9 @@ class ContactForm(ModelForm):
 
 class OrderForm(ModelForm):
     class Meta:
-        model = Contact
+        model = Order
         fields = "__all__"
+
 
 class BookSeatForm(ModelForm):
     class Meta:
