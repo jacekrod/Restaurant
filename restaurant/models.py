@@ -32,27 +32,32 @@ DRINK_VOLUME = (
     (3, 'decanter'),
 )
 
+class Ingredient(models.Model):
+    ingredient_name = models.CharField(max_length=64, verbose_name='składnik')
+
+
+    def __str__(self):
+        return '{}'.format(self.ingredient_name)
+
+
+    class Meta:
+        verbose_name = 'składnik'
+        verbose_name_plural = 'składniki'
+
 class Dish(models.Model):
     dish_name = models.CharField(max_length=150, verbose_name='danie')
     price = models.DecimalField(max_digits=5, decimal_places=1, verbose_name='cena')
+    ingredient = models.ForeignKey(Ingredient)
 
     def __str__(self):
-        return '{} {}'.format(self.dish_name, self.price)
+        return '{} {} {}'.format(self.dish_name, self.price, self.ingredient)
 
     class Meta:
         verbose_name = 'danie'
         verbose_name_plural = 'dania'
 
-class Ingridient(models.Model):
-    ingridient_name = models.CharField(max_length=64, verbose_name='składnik')
-    dish = models.ForeignKey(Dish, verbose_name='danie', primary_key = True)
 
-    def __str__(self):
-        return '{} {}'.format(self.ingridient_name, self.dish)
 
-    class Meta:
-        verbose_name = 'składnik'
-        verbose_name_plural = 'składniki'
 
 class Drinks(models.Model):
     drink_type = models.IntegerField(choices=DRINK_TYPES, null=True, blank=True, verbose_name='napoje typ')
@@ -82,24 +87,44 @@ class Contact(models.Model):
     content = models.TextField(verbose_name='treść')
     date_added = models.DateTimeField(default=now, verbose_name='wysłane')
 
+
     def __str__(self):
-        return '{} {}'.format(self.subject, self.content, self.date_added)
+        return '{} {} {} {} {} {}'.format(self.contact_details,
+                                          self.email,
+                                          self.phone_number,
+                                          self.subject,
+                                          self.content,
+                                          self.date_added
+                                          )
 
     class Meta:
         verbose_name = 'kontakt'
         verbose_name_plural = 'kontakty'
 
-# class Order(models.Model):
-#     dish_name = models.CharField(max_length=99, verbose_name='danie')
-#     drink = models.CharField(max_length=99, verbose_name='napój')
-#     date_added = models.DateTimeField(default=now, verbose_name='wysłane')
-#
-#     def __str__(self):
-#         return '{} {}'.format(self.subject, self.content, self.date_added)
-#
-#     class Meta:
-#         verbose_name = 'zamówienie'
-#         verbose_name_plural = 'zamówienia'
+class Order(models.Model):
+    name_surname=models.CharField(max_length=99, verbose_name='imię nazwisko')
+    address=models.CharField(max_length=199, verbose_name='adres')
+    email=models.EmailField(verbose_name='email')
+    phone_number=models.IntegerField(verbose_name='numer telefonu')
+    self_pickup=models.BooleanField(verbose_name='odbiór własny')
+    dish = models.ManyToManyField(Dish, verbose_name='danie')
+    drink = models.ManyToManyField(Drinks, verbose_name='napój')
+    date_added = models.DateTimeField(default=now, verbose_name='wysłane')
+
+    def __str__(self):
+        return '{} {} {} {} {} {} {} {}'.format(self.name_surname,
+                                          self.address,
+                                          self.email,
+                                          self.phone_number,
+                                          self.self_pickup,
+                                          self.dish,
+                                          self.drink,
+                                          self.date_added
+                                          )
+
+    class Meta:
+        verbose_name = 'zamówienie'
+        verbose_name_plural = 'zamówienia'
 
 class BookSeat(models.Model):
     date=models.DateTimeField(verbose_name='data rezerwacji')
