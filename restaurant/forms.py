@@ -30,10 +30,15 @@ class ContactForm(ModelForm):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = "__all__"
+        exclude = ['dish', 'drink', 'date_added', 'dish_order_quantity', 'wine_order_quantity', 'juice_order_quantity', 'beer_order_quantity', 'drink_order_quantity']
 
 
 class BookSeatForm(ModelForm):
     class Meta:
         model = BookSeat
         fields = "__all__"
+        widgets = {
+            'date': forms.TextInput(attrs={'placeholder': 'RRRR-MM-DD'}),
+            'time': forms.TextInput(attrs={'placeholder': 'GG:MM'})
+
+        }
