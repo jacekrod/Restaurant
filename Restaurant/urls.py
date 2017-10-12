@@ -18,15 +18,15 @@ from django.contrib import admin
 from restaurant.views import *
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin', admin.site.urls),
     url(r'^home$', HomeView.as_view(), name='home'),
     url(r'^about$', AboutView.as_view(), name='about'),
     url(r'^book$', BookSeatView.as_view(), name='book'),
     url(r'^menu$', MenuView.as_view(), name='menu'),
-    url(r'^order$', OrderView.as_view(), name='order'),
+    url(r'^order', OrderView.as_view(), name='order'),
     url(r'^contact$', ContactView.as_view(), name='contact'),
-    url(r'^dish$', DishView.as_view(), name = 'dish'),
-    url(r'^ingredient$', IngredientView.as_view(), name = 'ingredient'),
-    url(r'^drinks$', DrinksView.as_view(), name='drinks'),
+    # url(r'^dish$', DishView.as_view(), name = 'dish'),
+    # url(r'^ingredient$', IngredientView.as_view(), name = 'ingredient'),
+    # url(r'^drinks$', DrinksView.as_view(), name='drinks'),
 
 ]
