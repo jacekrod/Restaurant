@@ -90,7 +90,12 @@ h2 {
 }
 
 .container {
-    margin-bottom: 300px;
+    margin-bottom: 30px;
+}
+
+.extendables_bottom_margin {
+  padding-bottom: 500px;
+  color: red;
 }
 
 .contact_form {
@@ -106,9 +111,14 @@ h2 {
     font-size: 40px;
 }
 
-.panel-body {
-    background: url("/static/images/background.jpg");
 
+
+.order_body_background {
+  background: url("/static/images/background.jpg");
+}
+
+.order_footer_background {
+   background: white;
 }
 
 .menu_choice{
@@ -119,6 +129,5 @@ h2 {
     height: 32px;
 }
 
-.button {
-    float: right;
-}
+
+
